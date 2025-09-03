@@ -1,4 +1,4 @@
-package com.jhonju.ps3netsrv.app;
+package com.jhonju.infinitysrv.app;
 
 import static android.os.Build.VERSION.SDK_INT;
 
@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.jhonju.ps3netsrv.R;
+import com.jhonju.infinitysrv.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if (ContextCompat.checkSelfPermission(PS3NetSrvApp.getAppContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(infinitysrvApp.getAppContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestPermission();
         }
     }

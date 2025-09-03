@@ -1,10 +1,10 @@
-package com.jhonju.ps3netsrv.app.utils;
+package com.jhonju.infinitysrv.app.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.jhonju.ps3netsrv.app.PS3NetSrvApp;
+import com.jhonju.infinitysrv.app.infinitysrvApp;
 
 import java.net.Inet4Address;
 import java.net.Inet6Address;
@@ -16,7 +16,7 @@ import java.util.Enumeration;
 public class Utils {
 
     public static String getIPAddress(boolean useIPv4) throws Exception {
-        ConnectivityManager connManager = (ConnectivityManager) PS3NetSrvApp.getAppContext().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connManager = (ConnectivityManager) infinitysrvApp.getAppContext().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = connManager.getActiveNetworkInfo();
 
         if (activeNetwork != null && activeNetwork.isConnected()) {
@@ -40,7 +40,7 @@ public class Utils {
     }
 
     public static boolean isConnectedToLocal() {
-        ConnectivityManager connManager = (ConnectivityManager) PS3NetSrvApp.getAppContext().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connManager = (ConnectivityManager) infinitysrvApp.getAppContext().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo ethernetInfo = connManager.getNetworkInfo(ConnectivityManager.TYPE_ETHERNET);
         if (ethernetInfo != null && ethernetInfo.isConnected()) {
             return true;

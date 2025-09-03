@@ -1,19 +1,19 @@
-package com.jhonju.ps3netsrv.app;
+package com.jhonju.infinitysrv.app;
 
 import android.app.Application;
 import android.content.Context;
 
-public class PS3NetSrvApp extends Application {
+public class infinitysrvApp extends Application {
 
     private static Context context;
 
     public void onCreate() {
         super.onCreate();
-        PS3NetSrvApp.context = getApplicationContext();
+        infinitysrvApp.context = getApplicationContext();
     }
 
     public static Context getAppContext() {
-        return PS3NetSrvApp.context;
+        return infinitysrvApp.context;
     }
 
 }

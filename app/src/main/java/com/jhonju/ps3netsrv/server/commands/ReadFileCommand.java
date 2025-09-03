@@ -1,11 +1,11 @@
-package com.jhonju.ps3netsrv.server.commands;
+package com.jhonju.infinitysrv.server.commands;
 
-import static com.jhonju.ps3netsrv.server.utils.Utils.INT_CAPACITY;
+import static com.jhonju.infinitysrv.server.utils.Utils.INT_CAPACITY;
 
-import com.jhonju.ps3netsrv.server.Context;
-import com.jhonju.ps3netsrv.server.exceptions.PS3NetSrvException;
-import com.jhonju.ps3netsrv.server.io.IRandomAccessFile;
-import com.jhonju.ps3netsrv.server.utils.Utils;
+import com.jhonju.infinitysrv.server.Context;
+import com.jhonju.infinitysrv.server.exceptions.infinitysrvException;
+import com.jhonju.infinitysrv.server.io.IRandomAccessFile;
+import com.jhonju.infinitysrv.server.utils.Utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -43,19 +43,19 @@ public class ReadFileCommand extends AbstractCommand {
     }
 
     @Override
-    public void executeTask() throws IOException, PS3NetSrvException {
+    public void executeTask() throws IOException, infinitysrvException {
         byte[] readFileResult = new byte[numBytes];
         IRandomAccessFile file = ctx.getReadOnlyFile();
         try {
             file.seek(offset);
             int bytesRead = file.read(readFileResult);
             if (bytesRead < EMPTY_SIZE) {
-                throw new PS3NetSrvException("Error reading file: EOF.");
+                throw new infinitysrvException("Error reading file: EOF.");
             }
             send(new ReadFileResult(bytesRead, readFileResult));
         } catch (IOException e) {
             send(ERROR_CODE_BYTEARRAY);
-            throw new PS3NetSrvException("Error reading file.");
+            throw new infinitysrvException("Error reading file.");
         }
     }
 }

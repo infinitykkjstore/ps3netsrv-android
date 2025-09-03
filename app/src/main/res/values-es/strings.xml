@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ps3netsrv</string>
+    <string name="app_name">infinitysrv</string>
     <string name="action_settings">Configuraciones</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

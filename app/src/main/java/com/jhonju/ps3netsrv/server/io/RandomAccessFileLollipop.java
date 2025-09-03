@@ -1,4 +1,4 @@
-package com.jhonju.ps3netsrv.server.io;
+package com.jhonju.infinitysrv.server.io;
 
 import android.content.ContentResolver;
 import android.content.Context;

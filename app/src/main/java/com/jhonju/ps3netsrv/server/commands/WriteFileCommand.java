@@ -1,8 +1,8 @@
-package com.jhonju.ps3netsrv.server.commands;
+package com.jhonju.infinitysrv.server.commands;
 
-import com.jhonju.ps3netsrv.server.Context;
-import com.jhonju.ps3netsrv.server.exceptions.PS3NetSrvException;
-import com.jhonju.ps3netsrv.server.utils.Utils;
+import com.jhonju.infinitysrv.server.Context;
+import com.jhonju.infinitysrv.server.exceptions.infinitysrvException;
+import com.jhonju.infinitysrv.server.utils.Utils;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,26 +18,26 @@ public class WriteFileCommand extends AbstractCommand {
     }
 
     @Override
-    public void executeTask() throws IOException, PS3NetSrvException {
+    public void executeTask() throws IOException, infinitysrvException {
         if (ctx.isReadOnly()) {
             send(ERROR_CODE_BYTEARRAY);
-            throw new PS3NetSrvException("Failed to write file: server is executing as read only");
+            throw new infinitysrvException("Failed to write file: server is executing as read only");
         }
 
         if (ctx.getReadOnlyFile() == null) {
             send(ERROR_CODE_BYTEARRAY);
-            throw new PS3NetSrvException("ERROR: file is null");
+            throw new infinitysrvException("ERROR: file is null");
         }
 
         if (numBytes > BUFFER_SIZE) {
             send(ERROR_CODE_BYTEARRAY);
-            throw new PS3NetSrvException(String.format("ERROR: data to write (%d) is larger than buffer size (%d)", numBytes, BUFFER_SIZE));
+            throw new infinitysrvException(String.format("ERROR: data to write (%d) is larger than buffer size (%d)", numBytes, BUFFER_SIZE));
         }
 
         ByteBuffer buffer = Utils.readCommandData(ctx.getInputStream(), numBytes);
         if (buffer == null) {
             send(ERROR_CODE_BYTEARRAY);
-            throw new PS3NetSrvException("ERROR: on write file - content is null");
+            throw new infinitysrvException("ERROR: on write file - content is null");
         }
 
         send(ERROR_CODE_BYTEARRAY); //TODO: fix writeOnlyFile and remove this line
@@ -48,7 +48,7 @@ public class WriteFileCommand extends AbstractCommand {
 //                fos.write(content);
 //            } catch (IOException ex) {
 //                send(ERROR_CODE_BYTEARRAY);
-//                throw new PS3NetSrvException("ERROR: writing file " + ex.getMessage());
+//                throw new infinitysrvException("ERROR: writing file " + ex.getMessage());
 //            }
 //            send(Utils.intToBytesBE(content.length));
 //        }

@@ -1,13 +1,13 @@
-package com.jhonju.ps3netsrv.server.commands;
+package com.jhonju.infinitysrv.server.commands;
 
-import static com.jhonju.ps3netsrv.server.utils.Utils.longToBytesBE;
+import static com.jhonju.infinitysrv.server.utils.Utils.longToBytesBE;
 
-import com.jhonju.ps3netsrv.server.Context;
-import com.jhonju.ps3netsrv.server.charset.StandardCharsets;
-import com.jhonju.ps3netsrv.server.enums.CDSectorSize;
-import com.jhonju.ps3netsrv.server.exceptions.PS3NetSrvException;
-import com.jhonju.ps3netsrv.server.io.IFile;
-import com.jhonju.ps3netsrv.server.io.IRandomAccessFile;
+import com.jhonju.infinitysrv.server.Context;
+import com.jhonju.infinitysrv.server.charset.StandardCharsets;
+import com.jhonju.infinitysrv.server.enums.CDSectorSize;
+import com.jhonju.infinitysrv.server.exceptions.infinitysrvException;
+import com.jhonju.infinitysrv.server.io.IFile;
+import com.jhonju.infinitysrv.server.io.IRandomAccessFile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -48,12 +48,12 @@ public class OpenFileCommand extends FileCommand {
     }
 
     @Override
-    public void executeTask() throws IOException, PS3NetSrvException {
+    public void executeTask() throws IOException, infinitysrvException {
         IFile file = getFile();
         if (file == null) {
             ctx.setFile(null);
             send(new OpenFileResult());
-            throw new PS3NetSrvException("Error: on OpenFileCommand - file not exists");
+            throw new infinitysrvException("Error: on OpenFileCommand - file not exists");
         }
         ctx.setFile(file);
 
@@ -62,7 +62,7 @@ public class OpenFileCommand extends FileCommand {
         } catch (IOException e) {
             ctx.setFile(null);
             send(new OpenFileResult());
-            throw new PS3NetSrvException("Error: not possible to determine CD Sector size");
+            throw new infinitysrvException("Error: not possible to determine CD Sector size");
         }
         send(new OpenFileResult(file.length(), file.lastModified() / MILLISECONDS_IN_SECOND));
     }

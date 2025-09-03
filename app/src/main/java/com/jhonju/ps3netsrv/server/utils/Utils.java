@@ -1,6 +1,6 @@
-package com.jhonju.ps3netsrv.server.utils;
+package com.jhonju.infinitysrv.server.utils;
 
-import com.jhonju.ps3netsrv.server.charset.StandardCharsets;
+import com.jhonju.infinitysrv.server.charset.StandardCharsets;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-package com.jhonju.ps3netsrv.app;
+package com.jhonju.infinitysrv.app;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -17,16 +17,16 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
-import com.jhonju.ps3netsrv.R;
-import com.jhonju.ps3netsrv.server.PS3NetSrvTask;
-import com.jhonju.ps3netsrv.server.enums.EListType;
+import com.jhonju.infinitysrv.R;
+import com.jhonju.infinitysrv.server.infinitysrvTask;
+import com.jhonju.infinitysrv.server.enums.EListType;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class PS3NetService extends Service {
     private static ExecutorService executorService;
-    private static PS3NetSrvTask task;
+    private static infinitysrvTask task;
 
     private Thread.UncaughtExceptionHandler exceptionHandler = new Thread.UncaughtExceptionHandler() {
         @Override
@@ -50,7 +50,7 @@ public class PS3NetService extends Service {
         executorService = Executors.newSingleThreadExecutor();
         int idListType = SettingsService.getListType();
         EListType eListType = idListType == R.id.rbNone ? EListType.LIST_TYPE_NONE : idListType == R.id.rbAllowed ? EListType.LIST_TYPE_ALLOWED : EListType.LIST_TYPE_BLOCKED;
-        task = new PS3NetSrvTask(SettingsService.getPort(), SettingsService.getFolder(), SettingsService.getMaxConnections(), SettingsService.isReadOnly(), SettingsService.getIps(), eListType, exceptionHandler);
+        task = new infinitysrvTask(SettingsService.getPort(), SettingsService.getFolder(), SettingsService.getMaxConnections(), SettingsService.isReadOnly(), SettingsService.getIps(), eListType, exceptionHandler);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class PS3NetService extends Service {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             String NOTIFICATION_CHANNEL_ID = getPackageName();
-            String channelName = "PS3NetSrv Background Service";
+            String channelName = "infinitysrv Background Service";
             NotificationChannel chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_NONE);
             chan.setLightColor(Color.BLUE);
             chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
@@ -88,7 +88,7 @@ public class PS3NetService extends Service {
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
             Notification notification = notificationBuilder.setOngoing(true)
                     .setSmallIcon(R.drawable.ic_launcher_foreground)
-                    .setContentTitle("PS3NetSrv is running in background")
+                    .setContentTitle("infinitysrv is running in background")
                     .setPriority(NotificationManager.IMPORTANCE_MIN)
                     .setCategory(Notification.CATEGORY_SERVICE)
                     .build();

@@ -1,9 +1,9 @@
-# ps3netsrv-android
-Android ps3netsrv
+# infinitysrv-android
+Android infinitysrv
 
 Work in progress.
 
-Features missing from original ps3netsrv that I still wants to develop:
+Features missing from original infinitysrv that I still wants to develop:
 1. Multi part ISO.
 2. Virtual ISO from "JB Games".
 3. Encrypted ISO.

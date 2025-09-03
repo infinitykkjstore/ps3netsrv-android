@@ -5,7 +5,7 @@
         <item>Español</item>
         <item>Português</item>
     </string-array>
-    <string name="app_name">ps3netsrv</string>
+    <string name="app_name">infinitysrv</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label" translatable="false">First Fragment</string>

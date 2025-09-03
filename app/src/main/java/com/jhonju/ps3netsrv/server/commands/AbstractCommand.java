@@ -1,8 +1,8 @@
-package com.jhonju.ps3netsrv.server.commands;
+package com.jhonju.infinitysrv.server.commands;
 
-import com.jhonju.ps3netsrv.server.Context;
-import com.jhonju.ps3netsrv.server.exceptions.PS3NetSrvException;
-import com.jhonju.ps3netsrv.server.utils.Utils;
+import com.jhonju.infinitysrv.server.Context;
+import com.jhonju.infinitysrv.server.exceptions.infinitysrvException;
+import com.jhonju.infinitysrv.server.utils.Utils;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -21,12 +21,12 @@ public abstract class AbstractCommand implements ICommand {
         this.ctx = ctx;
     }
 
-    protected void send(IResult result) throws IOException, PS3NetSrvException {
+    protected void send(IResult result) throws IOException, infinitysrvException {
         byte[] byteArray;
         try {
              byteArray = result.toByteArray();
         } catch (IOException e) {
-            throw new PS3NetSrvException("ERROR on byte array conversion");
+            throw new infinitysrvException("ERROR on byte array conversion");
         }
         /* the "send" is out from try-catch because toByteArray also throws IOException, so
            it's possible to handle it. The IOException on "send" must end the
@@ -35,10 +35,10 @@ public abstract class AbstractCommand implements ICommand {
         send(byteArray);
     }
 
-    protected void send(byte[] result) throws IOException, PS3NetSrvException {
+    protected void send(byte[] result) throws IOException, infinitysrvException {
         OutputStream os = ctx.getOutputStream();
         if (result.length == EMPTY_SIZE) {
-            throw new PS3NetSrvException("Empty byte array to send to response");
+            throw new infinitysrvException("Empty byte array to send to response");
         }
         os.write(result);
         os.flush();

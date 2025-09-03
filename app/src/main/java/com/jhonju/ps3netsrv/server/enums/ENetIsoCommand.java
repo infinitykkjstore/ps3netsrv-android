@@ -1,4 +1,4 @@
-package com.jhonju.ps3netsrv.server.enums;
+package com.jhonju.infinitysrv.server.enums;
 
 public enum ENetIsoCommand {
     /* Closes the active ro file (if any) and open/stat a new one */

@@ -1,11 +1,11 @@
-package com.jhonju.ps3netsrv.server.commands;
+package com.jhonju.infinitysrv.server.commands;
 
-import com.jhonju.ps3netsrv.server.exceptions.PS3NetSrvException;
+import com.jhonju.infinitysrv.server.exceptions.infinitysrvException;
 
 import java.io.IOException;
 
 public interface ICommand {
 
-    void executeTask() throws IOException, PS3NetSrvException;
+    void executeTask() throws IOException, infinitysrvException;
 
 }

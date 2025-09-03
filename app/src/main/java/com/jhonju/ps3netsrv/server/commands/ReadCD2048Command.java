@@ -1,8 +1,8 @@
-package com.jhonju.ps3netsrv.server.commands;
+package com.jhonju.infinitysrv.server.commands;
 
-import com.jhonju.ps3netsrv.server.Context;
-import com.jhonju.ps3netsrv.server.exceptions.PS3NetSrvException;
-import com.jhonju.ps3netsrv.server.io.IRandomAccessFile;
+import com.jhonju.infinitysrv.server.Context;
+import com.jhonju.infinitysrv.server.exceptions.infinitysrvException;
+import com.jhonju.infinitysrv.server.io.IRandomAccessFile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -22,7 +22,7 @@ public class ReadCD2048Command extends AbstractCommand {
     }
 
     @Override
-    public void executeTask() throws IOException, PS3NetSrvException {
+    public void executeTask() throws IOException, infinitysrvException {
         if (sectorCount > MAX_SECTORS) {
             throw new IllegalArgumentException("Too many sectors read!");
             //TODO: VERIFICAR O QUE PODE SER DEVOLVIDO COMO RESPOSTA

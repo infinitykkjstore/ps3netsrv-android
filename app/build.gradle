@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.1"
 
     defaultConfig {
-        applicationId "com.jhonju.ps3netsrv"
+        applicationId "com.jhonju.infinitysrv"
         minSdkVersion 14
         targetSdkVersion 33
         versionCode 1

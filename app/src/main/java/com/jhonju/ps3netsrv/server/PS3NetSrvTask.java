@@ -1,14 +1,14 @@
-package com.jhonju.ps3netsrv.server;
+package com.jhonju.infinitysrv.server;
 
-import com.jhonju.ps3netsrv.server.enums.EListType;
-import com.jhonju.ps3netsrv.server.exceptions.PS3NetSrvException;
+import com.jhonju.infinitysrv.server.enums.EListType;
+import com.jhonju.infinitysrv.server.exceptions.infinitysrvException;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Set;
 
-public class PS3NetSrvTask implements Runnable {
+public class infinitysrvTask implements Runnable {
     private final Thread.UncaughtExceptionHandler exceptionHandler;
     private final int port;
     private final String folderPath;
@@ -19,7 +19,7 @@ public class PS3NetSrvTask implements Runnable {
     private ServerSocket serverSocket;
     private boolean isRunning = true;
 
-    public PS3NetSrvTask(int port, String folderPath, int maxConnections, boolean readOnly, Set<String> filterAddresses, EListType listType, Thread.UncaughtExceptionHandler exceptionHandler) {
+    public infinitysrvTask(int port, String folderPath, int maxConnections, boolean readOnly, Set<String> filterAddresses, EListType listType, Thread.UncaughtExceptionHandler exceptionHandler) {
         this.port = port;
         this.folderPath = folderPath;
         this.maxConnections = maxConnections;
@@ -37,7 +37,7 @@ public class PS3NetSrvTask implements Runnable {
                 Socket clientSocket = serverSocket.accept();
                 String hostAddress = clientSocket.getInetAddress().getHostAddress();
                 if (!allowIncomingConnection(hostAddress)) {
-                    exceptionHandler.uncaughtException(null, new PS3NetSrvException(String.format("Blocked connection: %s", hostAddress)));
+                    exceptionHandler.uncaughtException(null, new infinitysrvException(String.format("Blocked connection: %s", hostAddress)));
                     try {
                         clientSocket.close();
                     } catch (IOException e) {

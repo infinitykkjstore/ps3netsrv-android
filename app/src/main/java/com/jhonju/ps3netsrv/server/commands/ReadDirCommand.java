@@ -1,11 +1,11 @@
-package com.jhonju.ps3netsrv.server.commands;
+package com.jhonju.infinitysrv.server.commands;
 
-import static com.jhonju.ps3netsrv.server.utils.Utils.LONG_CAPACITY;
+import static com.jhonju.infinitysrv.server.utils.Utils.LONG_CAPACITY;
 
-import com.jhonju.ps3netsrv.server.Context;
-import com.jhonju.ps3netsrv.server.exceptions.PS3NetSrvException;
-import com.jhonju.ps3netsrv.server.io.IFile;
-import com.jhonju.ps3netsrv.server.utils.Utils;
+import com.jhonju.infinitysrv.server.Context;
+import com.jhonju.infinitysrv.server.exceptions.infinitysrvException;
+import com.jhonju.infinitysrv.server.io.IFile;
+import com.jhonju.infinitysrv.server.utils.Utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -78,7 +78,7 @@ public class ReadDirCommand extends AbstractCommand {
     }
 
     @Override
-    public void executeTask() throws IOException, PS3NetSrvException {
+    public void executeTask() throws IOException, infinitysrvException {
         IFile file = ctx.getFile();
         if (file == null || !file.isDirectory()) {
             send(Utils.longToBytesBE(EMPTY_SIZE));

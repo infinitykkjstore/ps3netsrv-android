@@ -1,10 +1,10 @@
-package com.jhonju.ps3netsrv.server.commands;
+package com.jhonju.infinitysrv.server.commands;
 
 import java.io.IOException;
 
-import com.jhonju.ps3netsrv.server.Context;
-import com.jhonju.ps3netsrv.server.exceptions.PS3NetSrvException;
-import com.jhonju.ps3netsrv.server.io.IRandomAccessFile;
+import com.jhonju.infinitysrv.server.Context;
+import com.jhonju.infinitysrv.server.exceptions.infinitysrvException;
+import com.jhonju.infinitysrv.server.io.IRandomAccessFile;
 
 public class ReadFileCriticalCommand extends ReadFileCommand {
 
@@ -13,16 +13,16 @@ public class ReadFileCriticalCommand extends ReadFileCommand {
     }
 
     @Override
-    public void executeTask() throws IOException, PS3NetSrvException {
+    public void executeTask() throws IOException, infinitysrvException {
         byte[] result = new byte[numBytes];
         IRandomAccessFile file = ctx.getReadOnlyFile();
         try {
             file.seek(offset);
             if (file.read(result) < EMPTY_SIZE) {
-                throw new PS3NetSrvException("Error reading file. EOF");
+                throw new infinitysrvException("Error reading file. EOF");
             }
         } catch (IOException e) {
-            throw new PS3NetSrvException("Error reading file.");
+            throw new infinitysrvException("Error reading file.");
         }
         send(result);
     }

@@ -1,7 +1,7 @@
-package com.jhonju.ps3netsrv.server.commands;
+package com.jhonju.infinitysrv.server.commands;
 
-import com.jhonju.ps3netsrv.server.Context;
-import com.jhonju.ps3netsrv.server.exceptions.PS3NetSrvException;
+import com.jhonju.infinitysrv.server.Context;
+import com.jhonju.infinitysrv.server.exceptions.infinitysrvException;
 
 import java.io.IOException;
 
@@ -12,10 +12,10 @@ public class DeleteFileCommand extends FileCommand {
     }
 
     @Override
-    public void executeTask() throws PS3NetSrvException, IOException {
+    public void executeTask() throws infinitysrvException, IOException {
         if (ctx.isReadOnly()) {
             send(ERROR_CODE_BYTEARRAY);
-            throw new PS3NetSrvException("Failed to delete file: server is executing as read only");
+            throw new infinitysrvException("Failed to delete file: server is executing as read only");
         }
         send(getFile().delete() ? SUCCESS_CODE_BYTEARRAY : ERROR_CODE_BYTEARRAY);
     }

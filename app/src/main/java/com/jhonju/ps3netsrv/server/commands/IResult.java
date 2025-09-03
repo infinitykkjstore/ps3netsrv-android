@@ -1,4 +1,4 @@
-package com.jhonju.ps3netsrv.server.commands;
+package com.jhonju.infinitysrv.server.commands;
 
 import java.io.IOException;
 

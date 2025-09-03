@@ -1,19 +1,19 @@
-package com.jhonju.ps3netsrv.server.commands;
+package com.jhonju.infinitysrv.server.commands;
 
 import android.net.Uri;
 import android.os.Build;
 
-import com.jhonju.ps3netsrv.app.PS3NetSrvApp;
-import com.jhonju.ps3netsrv.server.Context;
-import com.jhonju.ps3netsrv.server.exceptions.PS3NetSrvException;
-import com.jhonju.ps3netsrv.server.io.DocumentFile;
-import com.jhonju.ps3netsrv.server.io.File;
-import com.jhonju.ps3netsrv.server.io.IFile;
-import com.jhonju.ps3netsrv.server.utils.Utils;
+import com.jhonju.infinitysrv.app.infinitysrvApp;
+import com.jhonju.infinitysrv.server.Context;
+import com.jhonju.infinitysrv.server.exceptions.infinitysrvException;
+import com.jhonju.infinitysrv.server.io.DocumentFile;
+import com.jhonju.infinitysrv.server.io.File;
+import com.jhonju.infinitysrv.server.io.IFile;
+import com.jhonju.infinitysrv.server.utils.Utils;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import com.jhonju.ps3netsrv.server.charset.StandardCharsets;
+import com.jhonju.infinitysrv.server.charset.StandardCharsets;
 
 public abstract class FileCommand extends AbstractCommand {
     protected short filePathLength;
@@ -32,21 +32,21 @@ public abstract class FileCommand extends AbstractCommand {
         return path;
     }
 
-    protected IFile getFile() throws IOException, PS3NetSrvException {
+    protected IFile getFile() throws IOException, infinitysrvException {
         ByteBuffer buffer = Utils.readCommandData(ctx.getInputStream(), this.filePathLength);
         if (buffer == null) {
             send(ERROR_CODE_BYTEARRAY);
-            throw new PS3NetSrvException("ERROR: command failed receiving filename.");
+            throw new infinitysrvException("ERROR: command failed receiving filename.");
         }
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             return new File(new java.io.File(ctx.getRootDirectory(), new String(buffer.array(), StandardCharsets.UTF_8).replaceAll("\\x00+$", "")));
         }
 
-        androidx.documentfile.provider.DocumentFile documentFile = androidx.documentfile.provider.DocumentFile.fromTreeUri(PS3NetSrvApp.getAppContext(), Uri.parse(ctx.getRootDirectory()));
+        androidx.documentfile.provider.DocumentFile documentFile = androidx.documentfile.provider.DocumentFile.fromTreeUri(infinitysrvApp.getAppContext(), Uri.parse(ctx.getRootDirectory()));
         if (documentFile == null || !documentFile.exists()) {
             send(ERROR_CODE_BYTEARRAY);
-            throw new PS3NetSrvException("ERROR: wrong path configuration.");
+            throw new infinitysrvException("ERROR: wrong path configuration.");
         }
 
         String path = getFormattedPath(new String(buffer.array(), StandardCharsets.UTF_8));

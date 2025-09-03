@@ -1,23 +1,23 @@
-package com.jhonju.ps3netsrv.server;
+package com.jhonju.infinitysrv.server;
 
-import com.jhonju.ps3netsrv.server.commands.CreateFileCommand;
-import com.jhonju.ps3netsrv.server.commands.DeleteFileCommand;
-import com.jhonju.ps3netsrv.server.commands.GetDirSizeCommand;
-import com.jhonju.ps3netsrv.server.commands.ICommand;
-import com.jhonju.ps3netsrv.server.commands.MakeDirCommand;
-import com.jhonju.ps3netsrv.server.commands.OpenDirCommand;
-import com.jhonju.ps3netsrv.server.commands.OpenFileCommand;
-import com.jhonju.ps3netsrv.server.commands.ReadCD2048Command;
-import com.jhonju.ps3netsrv.server.commands.ReadDirCommand;
-import com.jhonju.ps3netsrv.server.commands.ReadDirEntryCommand;
-import com.jhonju.ps3netsrv.server.commands.ReadDirEntryCommandV2;
-import com.jhonju.ps3netsrv.server.commands.ReadFileCommand;
-import com.jhonju.ps3netsrv.server.commands.ReadFileCriticalCommand;
-import com.jhonju.ps3netsrv.server.commands.StatFileCommand;
-import com.jhonju.ps3netsrv.server.commands.WriteFileCommand;
-import com.jhonju.ps3netsrv.server.enums.ENetIsoCommand;
-import com.jhonju.ps3netsrv.server.exceptions.PS3NetSrvException;
-import com.jhonju.ps3netsrv.server.utils.Utils;
+import com.jhonju.infinitysrv.server.commands.CreateFileCommand;
+import com.jhonju.infinitysrv.server.commands.DeleteFileCommand;
+import com.jhonju.infinitysrv.server.commands.GetDirSizeCommand;
+import com.jhonju.infinitysrv.server.commands.ICommand;
+import com.jhonju.infinitysrv.server.commands.MakeDirCommand;
+import com.jhonju.infinitysrv.server.commands.OpenDirCommand;
+import com.jhonju.infinitysrv.server.commands.OpenFileCommand;
+import com.jhonju.infinitysrv.server.commands.ReadCD2048Command;
+import com.jhonju.infinitysrv.server.commands.ReadDirCommand;
+import com.jhonju.infinitysrv.server.commands.ReadDirEntryCommand;
+import com.jhonju.infinitysrv.server.commands.ReadDirEntryCommandV2;
+import com.jhonju.infinitysrv.server.commands.ReadFileCommand;
+import com.jhonju.infinitysrv.server.commands.ReadFileCriticalCommand;
+import com.jhonju.infinitysrv.server.commands.StatFileCommand;
+import com.jhonju.infinitysrv.server.commands.WriteFileCommand;
+import com.jhonju.infinitysrv.server.enums.ENetIsoCommand;
+import com.jhonju.infinitysrv.server.exceptions.infinitysrvException;
+import com.jhonju.infinitysrv.server.utils.Utils;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -56,7 +56,7 @@ public class ContextHandler extends Thread {
         Context ctx = context;
         try {
             if (maxConnections > 0 && simultaneousConnections > maxConnections) {
-                getUncaughtExceptionHandler().uncaughtException(this, new PS3NetSrvException("Connection limit is reached"));
+                getUncaughtExceptionHandler().uncaughtException(this, new infinitysrvException("Connection limit is reached"));
                 return;
             }
             while (ctx.isSocketConnected()) {
@@ -66,7 +66,7 @@ public class ContextHandler extends Thread {
                     if (Utils.isByteArrayEmpty(packet.array()))
                         continue;
                     handleContext(ctx, packet);
-                } catch (PS3NetSrvException e) {
+                } catch (infinitysrvException e) {
                     getUncaughtExceptionHandler().uncaughtException(this, e);
                 }
             }
@@ -78,11 +78,11 @@ public class ContextHandler extends Thread {
         }
     }
 
-    private void handleContext(Context ctx, ByteBuffer buffer) throws PS3NetSrvException, IOException {
+    private void handleContext(Context ctx, ByteBuffer buffer) throws infinitysrvException, IOException {
         final ICommand command;
         ENetIsoCommand opCode = ENetIsoCommand.valueOf(buffer.getShort(IDX_OP_CODE));
         if (opCode == null) {
-            throw new PS3NetSrvException("invalid opCode: " + buffer.getShort(IDX_OP_CODE));
+            throw new infinitysrvException("invalid opCode: " + buffer.getShort(IDX_OP_CODE));
         }
         switch (opCode) {
             case NETISO_CMD_OPEN_DIR:
@@ -129,7 +129,7 @@ public class ContextHandler extends Thread {
                 command = new ReadDirEntryCommandV2(ctx);
                 break;
             default:
-                throw new PS3NetSrvException("OpCode not implemented: " + opCode.name());
+                throw new infinitysrvException("OpCode not implemented: " + opCode.name());
         }
         command.executeTask();
     }

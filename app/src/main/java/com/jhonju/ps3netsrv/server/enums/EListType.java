@@ -1,4 +1,4 @@
-package com.jhonju.ps3netsrv.server.enums;
+package com.jhonju.infinitysrv.server.enums;
 
 public enum EListType {
     LIST_TYPE_NONE,

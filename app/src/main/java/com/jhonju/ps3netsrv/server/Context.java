@@ -1,15 +1,15 @@
-package com.jhonju.ps3netsrv.server;
+package com.jhonju.infinitysrv.server;
 
 import android.os.Build;
 
-import com.jhonju.ps3netsrv.app.PS3NetSrvApp;
-import com.jhonju.ps3netsrv.server.enums.CDSectorSize;
-import com.jhonju.ps3netsrv.server.io.DocumentFile;
-import com.jhonju.ps3netsrv.server.io.File;
-import com.jhonju.ps3netsrv.server.io.IFile;
-import com.jhonju.ps3netsrv.server.io.IRandomAccessFile;
-import com.jhonju.ps3netsrv.server.io.RandomAccessFile;
-import com.jhonju.ps3netsrv.server.io.RandomAccessFileLollipop;
+import com.jhonju.infinitysrv.app.infinitysrvApp;
+import com.jhonju.infinitysrv.server.enums.CDSectorSize;
+import com.jhonju.infinitysrv.server.io.DocumentFile;
+import com.jhonju.infinitysrv.server.io.File;
+import com.jhonju.infinitysrv.server.io.IFile;
+import com.jhonju.infinitysrv.server.io.IRandomAccessFile;
+import com.jhonju.infinitysrv.server.io.RandomAccessFile;
+import com.jhonju.infinitysrv.server.io.RandomAccessFileLollipop;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -57,7 +57,7 @@ public class Context {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                     readOnlyFile = new RandomAccessFile(((File)file).getFile(), "r");
                 } else {
-                    readOnlyFile = new RandomAccessFileLollipop(PS3NetSrvApp.getAppContext(), ((DocumentFile)file).getDocumentFile(), "r");
+                    readOnlyFile = new RandomAccessFileLollipop(infinitysrvApp.getAppContext(), ((DocumentFile)file).getDocumentFile(), "r");
                 }
             } catch (IOException fe) {
                 readOnlyFile = null;

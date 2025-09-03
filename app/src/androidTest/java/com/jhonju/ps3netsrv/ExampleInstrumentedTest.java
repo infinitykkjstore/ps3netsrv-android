@@ -1,4 +1,4 @@
-package com.jhonju.ps3netsrv;
+package com.jhonju.infinitysrv;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.jhonju.ps3netsrv", appContext.getPackageName());
+        assertEquals("com.jhonju.infinitysrv", appContext.getPackageName());
     }
 }

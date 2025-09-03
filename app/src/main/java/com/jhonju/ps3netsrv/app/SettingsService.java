@@ -1,9 +1,9 @@
-package com.jhonju.ps3netsrv.app;
+package com.jhonju.infinitysrv.app;
 
 import android.content.SharedPreferences;
 import android.os.Environment;
 
-import com.jhonju.ps3netsrv.R;
+import com.jhonju.infinitysrv.R;
 
 import java.io.File;
 import java.util.HashSet;
@@ -11,14 +11,14 @@ import java.util.Set;
 
 public class SettingsService {
     private static final String settings = "settings";
-    private static SharedPreferences spPort = PS3NetSrvApp.getAppContext().getSharedPreferences("PORT",0);
-    private static SharedPreferences spFolder = PS3NetSrvApp.getAppContext().getSharedPreferences("FOLDER",0);
-    private static SharedPreferences spIps = PS3NetSrvApp.getAppContext().getSharedPreferences("IPS",0);
-    private static SharedPreferences spListType = PS3NetSrvApp.getAppContext().getSharedPreferences("LIST_TYPE",0);
-    private static SharedPreferences spMaxConnections = PS3NetSrvApp.getAppContext().getSharedPreferences("MAX_CONNECTIONS",0);
-    private static SharedPreferences spReadOnly = PS3NetSrvApp.getAppContext().getSharedPreferences("READ_ONLY",0);
+    private static SharedPreferences spPort = infinitysrvApp.getAppContext().getSharedPreferences("PORT",0);
+    private static SharedPreferences spFolder = infinitysrvApp.getAppContext().getSharedPreferences("FOLDER",0);
+    private static SharedPreferences spIps = infinitysrvApp.getAppContext().getSharedPreferences("IPS",0);
+    private static SharedPreferences spListType = infinitysrvApp.getAppContext().getSharedPreferences("LIST_TYPE",0);
+    private static SharedPreferences spMaxConnections = infinitysrvApp.getAppContext().getSharedPreferences("MAX_CONNECTIONS",0);
+    private static SharedPreferences spReadOnly = infinitysrvApp.getAppContext().getSharedPreferences("READ_ONLY",0);
 
-    public static int getPort() { return spPort.getInt(settings, PS3NetSrvApp.getAppContext().getResources().getInteger(R.integer.defaultPort)); }
+    public static int getPort() { return spPort.getInt(settings, infinitysrvApp.getAppContext().getResources().getInteger(R.integer.defaultPort)); }
 
     public static Set<String> getIps() { return spIps.getStringSet(settings, new HashSet<String>()); }
 
@@ -35,14 +35,14 @@ public class SettingsService {
     private static String getDefaultFolder() {
         String state = Environment.getExternalStorageState();
         if(Environment.MEDIA_MOUNTED.equals(state)) {
-            File baseDirFile = PS3NetSrvApp.getAppContext().getExternalFilesDir(null);
+            File baseDirFile = infinitysrvApp.getAppContext().getExternalFilesDir(null);
             if(baseDirFile == null) {
-                return PS3NetSrvApp.getAppContext().getFilesDir().getAbsolutePath();
+                return infinitysrvApp.getAppContext().getFilesDir().getAbsolutePath();
             } else {
                 return baseDirFile.getAbsolutePath();
             }
         } else {
-            return PS3NetSrvApp.getAppContext().getFilesDir().getAbsolutePath();
+            return infinitysrvApp.getAppContext().getFilesDir().getAbsolutePath();
         }
     }
 

@@ -1,4 +1,4 @@
-package com.jhonju.ps3netsrv.app;
+package com.jhonju.infinitysrv.app;
 
 import android.content.Intent;
 import android.os.Build;
@@ -13,8 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.jhonju.ps3netsrv.R;
-import com.jhonju.ps3netsrv.app.utils.Utils;
+import com.jhonju.infinitysrv.R;
+import com.jhonju.infinitysrv.app.utils.Utils;
 
 import java.io.IOException;
 import java.io.InputStream;

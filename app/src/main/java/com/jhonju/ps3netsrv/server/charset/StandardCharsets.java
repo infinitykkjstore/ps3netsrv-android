@@ -1,4 +1,4 @@
-package com.jhonju.ps3netsrv.server.charset;
+package com.jhonju.infinitysrv.server.charset;
 
 import java.nio.charset.Charset;
 

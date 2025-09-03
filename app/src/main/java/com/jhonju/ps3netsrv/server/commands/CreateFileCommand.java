@@ -1,7 +1,7 @@
-package com.jhonju.ps3netsrv.server.commands;
+package com.jhonju.infinitysrv.server.commands;
 
-import com.jhonju.ps3netsrv.server.Context;
-import com.jhonju.ps3netsrv.server.exceptions.PS3NetSrvException;
+import com.jhonju.infinitysrv.server.Context;
+import com.jhonju.infinitysrv.server.exceptions.infinitysrvException;
 
 import java.io.IOException;
 
@@ -10,16 +10,16 @@ public class CreateFileCommand extends FileCommand {
     public CreateFileCommand(Context ctx, short filePathLength) { super(ctx, filePathLength); }
 
     @Override
-    public void executeTask() throws PS3NetSrvException, IOException {
+    public void executeTask() throws infinitysrvException, IOException {
         if (ctx.isReadOnly()) {
             send(ERROR_CODE_BYTEARRAY);
-            throw new PS3NetSrvException("Failed to create file: server is executing as read only");
+            throw new infinitysrvException("Failed to create file: server is executing as read only");
         }
 
         try {
             if (currentDirectory == null) {
                 send(ERROR_CODE_BYTEARRAY);
-                throw new PS3NetSrvException("ERROR: Current directory should not be null");
+                throw new infinitysrvException("ERROR: Current directory should not be null");
             }
             //ctx.setWriteOnlyFile(null);
 
@@ -31,7 +31,7 @@ public class CreateFileCommand extends FileCommand {
             send(SUCCESS_CODE_BYTEARRAY);
         } catch (IOException ex) {
             send(ERROR_CODE_BYTEARRAY);
-            throw new PS3NetSrvException(ex.getMessage());
+            throw new infinitysrvException(ex.getMessage());
         }
     }
 }

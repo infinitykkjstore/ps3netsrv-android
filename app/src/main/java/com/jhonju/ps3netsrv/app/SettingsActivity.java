@@ -1,4 +1,4 @@
-package com.jhonju.ps3netsrv.app;
+package com.jhonju.infinitysrv.app;
 
 import android.Manifest;
 import android.content.Intent;
@@ -9,8 +9,8 @@ import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
-import com.jhonju.ps3netsrv.R;
-import com.jhonju.ps3netsrv.app.components.SimpleFileChooser;
+import com.jhonju.infinitysrv.R;
+import com.jhonju.infinitysrv.app.components.SimpleFileChooser;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -132,7 +132,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int permission = -1;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    permission = ContextCompat.checkSelfPermission(PS3NetSrvApp.getAppContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
+                    permission = ContextCompat.checkSelfPermission(infinitysrvApp.getAppContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
                 } else {
                     permission = Build.VERSION.SDK_INT < Build.VERSION_CODES.M ? 0 : getPackageManager().checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, getPackageName());
                 }

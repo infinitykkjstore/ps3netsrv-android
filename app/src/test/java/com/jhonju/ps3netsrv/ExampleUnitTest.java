@@ -1,4 +1,4 @@
-package com.jhonju.ps3netsrv;
+package com.jhonju.infinitysrv;
 
 import org.junit.Test;
 
